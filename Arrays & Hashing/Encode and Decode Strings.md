@@ -1,0 +1,29 @@
+<img width="822" height="772" alt="image" src="https://github.com/user-attachments/assets/805eb41d-c2a1-4e26-8d19-d2dfc920c631" />
+
+## Medium
+### Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
+### 設計一個演算法，將一串字串編碼為單一字串。然後將編碼後的字串解碼回原始字串清單。
+
+```
+class Solution:
+    
+    def encode(self, strs: List[str]) -> str:
+        s = ""
+        Input=strs
+        for i in Input:
+            s+=str(len(i)) + ':' + i
+        return s
+
+    def decode(self, s: str) -> List[str]:
+        Output = []
+        l , r = 0 , 0
+        while r < len(s):
+            if ":" == s[r]:
+                length = int( s[l:r] )
+                Output.append( s[ r+1 : r+length+1 ] )
+                l=r+length+1
+                r = l
+            r+=1
+
+        return Output
+```
